@@ -1,0 +1,36 @@
+.djs-palette.two-column.open {
+  height: fit-content;
+}
+
+.bpmn-pointer {
+  cursor: pointer;
+}
+
+.bjsl-icon {
+  font-size: 12px;
+}
+
+.bjsl-issues {
+  .icon {
+    height: 12px;
+    width: 12px;
+  }
+}
+
+.bpmn-subprocess-plus {
+  min-height: 15px;
+  width: 15px;
+}
+
+div.djs-popup-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.splitter-container .djs-popup-results * {
+  flex: 1 1 auto;
+}
+
+.djs-popup-search-icon {
+  top: 12px
+}
