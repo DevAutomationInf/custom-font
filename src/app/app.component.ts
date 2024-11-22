@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import Modeler from "bpmn-js/lib/Modeler";
 import CustomRules from "./custom/custom-rules";
-// import {CustomRenderer} from "./custom/custom-renderer";
+import {CustomRenderer} from "./custom/custom-renderer";
 
 @Component({
   selector: 'app-root',
@@ -21,9 +21,8 @@ export class AppComponent implements OnInit, OnDestroy {
       container: this.bpmnModeler.nativeElement,
       additionalModules: [
         {
-          __init__: ['resizeTasks'],
-          // __init__: ['customRenderer','resizeTasks'],
-          // customRenderer: ['type', CustomRenderer],
+          __init__: ['customRenderer','resizeTasks'],
+          customRenderer: ['type', CustomRenderer],
           resizeTasks: ['type', CustomRules],
         },
       ],
