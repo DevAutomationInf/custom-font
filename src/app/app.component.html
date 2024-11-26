@@ -1,1 +1,10 @@
+<div class="font-size">
+  <p>{{selectedElementType ? ' Selected element: ' + selectedElementType : 'Click on an element'}}</p>
+  <label for="font-size">
+     Font size
+  </label>
+  <input id="font-size" type="text" [(ngModel)]="fontSize" [disabled]="!selectedElementType">
+  <button (click)="setFontSize()">Set font</button>
+</div>
 <div class="canvas" #bpmnModeler></div>
+
