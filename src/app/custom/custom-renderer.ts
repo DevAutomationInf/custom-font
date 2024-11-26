@@ -36,7 +36,6 @@ export class CustomRenderer extends BaseRenderer {
   }
 
   override drawShape(parentGfx: SVGElement, element: Shape): SVGElement {
-    console.log(element);
     const fontSize = element?.businessObject?.extensionElements?.values.find(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ({ name }: any) => name === 'fontSize',
@@ -58,27 +57,13 @@ export class CustomRenderer extends BaseRenderer {
         align: 'center-top',
         box,
       });
-      if (element.di?.label?.bounds) {
-        const { width, height } = element.di.label.bounds;
-        text = textUtil.createText(getLabel(element), { box: { width, height } });
-      }
       svgAppend(parentGfx, text);
 
       return text;
     } else {
 
-      // const shape = super.drawShape(parentGfx, element);
-      // console.log('shape',shape);
-      // console.log('parentGfx',parentGfx);
-      const text = textUtil.createText(getLabel(element), { style: {fontSize: '40'} });
-      // const style = {...text.style, fontSize:40};
-      // svgAttr(text,{style} );
-      // console.log('text',text);
-      // console.log('label',element?.di.label);
-      // element?.di.label.set('fontSize', 90)
-      // element?.di?.set('label', text);
-      // element?.di?.set('stroke', 'blue');
-      element?.di.label?.set('fontSize', '40');
+      element?.di.label?.set('style', {fontSize:40, 'stroke': 'blue'});
+      console.log('label',element?.di.label)
       return super.drawShape(parentGfx, element);
     }
 
