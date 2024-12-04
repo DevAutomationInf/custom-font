@@ -8,6 +8,7 @@ import Styles from 'diagram-js/lib/draw/Styles';
 import Canvas from 'diagram-js/lib/core/Canvas';
 import TextUtil from 'diagram-js/lib/util/Text';
 import { append as svgAppend, attr as svgAttr,} from 'tiny-svg';
+import {getBounds, getLabelColor, getSemantic} from "bpmn-js/lib/draw/BpmnRenderUtil";
 
 export class CustomRenderer extends BaseRenderer {
   static override $inject = ['config.bpmnRenderer', 'eventBus', 'styles', 'pathMap', 'canvas', 'textRenderer'];
@@ -71,5 +72,31 @@ export class CustomRenderer extends BaseRenderer {
 
 
 
+  }
+
+   // @ts-ignore attempt to override method, not working
+  override renderEmbeddedLabel(parentGfx: SVGElement, element:Shape, align: any, attrs = {}){
+    console.log('renderEmbeddedLabel style',element.di.label.labelStyle);
+
+    const semantic = getSemantic(element);
+
+    const box = getBounds({
+      x: element.x,
+      y: element.y,
+      width: element.width,
+      height: element.height
+    }, attrs);
+
+    // @ts-ignore
+    return super.renderLabel(parentGfx, semantic.name, {
+      align,
+      box,
+      padding: 7,
+      style: {
+        // @ts-ignore
+        fill: getLabelColor(element, super.defaultLabelColor, super.defaultStrokeColor, attrs.stroke),
+        ...element.di.label.labelStyle,
+      }
+    });
   }
 }
