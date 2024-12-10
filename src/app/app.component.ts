@@ -4,6 +4,7 @@ import CustomRules from "./custom/custom-rules";
 import {CustomRenderer} from "./custom/custom-renderer";
 import {getUpdatedExtensions, MODDLE_EXTENSIONS, updateProperties} from "./extension.util";
 import {ModdleElement} from "bpmn-js/lib/model/Types";
+import CustomCanvas from "./custom/custom-canvas";
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
           __init__: ['customRenderer','resizeTasks'],
           customRenderer: ['type', CustomRenderer],
           resizeTasks: ['type', CustomRules],
+          canvas: ['type', CustomCanvas],
         },
       ],
       moddleExtensions: MODDLE_EXTENSIONS,
